@@ -1,0 +1,16 @@
+{
+  "name": "sentiment_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "jumpstart start --inline-limit=0 .",
+    "build": "jumpstart build --inline-limit=0 .",
+    "server": "node-red flow.json"
+  },
+  "dependencies": {
+    "jumpstart-cli": "^3.1.5",
+    "node-red": "^0.19.4",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
+  }
+}
