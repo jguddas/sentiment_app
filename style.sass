@@ -1,0 +1,64 @@
+html, body
+  margin: 0
+  padding: 0
+  width: 100%
+
+body
+  font-family: Sans-Serif
+  background: #F5F8FA
+
+.error
+  color: white
+  padding: 0.7em 2em
+  background-color: #c73c3c
+
+.quote-container
+  margin: 3em auto
+  padding: 0 2em
+
+.quote
+  margin: 0 auto
+  border: 1px solid #eee
+  border-left: 4px solid gray
+  padding: 25px 50px
+  border-radius: 6px
+  max-width: 500px
+  background: white
+  color: #17181A
+  &.positive
+    border-left: 4px solid #6fa847
+  &.negative
+    border-left: 4px solid #c73c3c
+
+.quote-footer
+  padding: 10px 15px 0 10px
+  margin-bottom: -5px
+  .words
+    float: right
+
+.reload
+  position: absolute
+  right: 0
+  top: 0
+  margin: 0.8em 1.2em
+  font-size: 3em
+  cursor: default
+  user-select: none
+  color: lightgray
+  cursor: pointer
+  &.loading
+    cursor: default
+    animation-name: spin
+    animation-duration: 600ms
+    animation-iteration-count: infinite
+    animation-timing-function: linear
+
+@media (max-width: 900px)
+  .reload
+    display: none
+
+@keyframes spin
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)

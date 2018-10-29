@@ -8,6 +8,7 @@
     "server": "node-red flow.json"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "jumpstart-cli": "^3.1.5",
     "node-red": "^0.19.4",
     "react": "^16.6.0",

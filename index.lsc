@@ -1,6 +1,51 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { render } from 'react-dom'
+import cx from 'classnames'
+import './style.sass'
 
-App() -> <div>Hello World!</div>
+Quote({ text, sentiment, word_count, author }) ->
+  <div className="quote-container">
+    <div className={cx({
+      quote: true
+      positive: sentiment > 0
+      negative: sentiment < 0
+    })}>
+      {text}
+      <div className="quote-footer">
+       {author && <span> - {author}</span>}
+       <div className="words">{word_count} words</div>
+      </div>
+    </div>
+  </div>
+
+ErrorDisplay({ error }) ->
+  <div className="error">{error.toString()}</div>
+
+class App extends Component:
+  state = {}
+  componentDidMount() ->
+    this.loadQuote()
+  loadQuote() =>
+    if !this.state.loading: this.setState({ loading: true })
+    fetch('http://localhost:1880/quote')
+      .then(res => res.json())
+      .then(quote =>
+        if !this.state.quote || quote.text != this.state.quote.text:
+          this.setState({ quote, error: null, loading: false })
+        else: this.loadQuote()
+      )
+      .catch(error => this.setState({ error, loading: false }))
+  render() ->
+    <div>
+      <div
+        onClick={=> this.state.loading || this.loadQuote()}
+        className={cx({
+          reload: true
+          loading: this.state.loading
+        })}
+      >↻</div>
+      {this.state.error && <ErrorDisplay error={this.state.error}/>}
+      {this.state.quote && <Quote {...this.state.quote}/>}
+    </div>
 
 render(<App/>, document.body)
